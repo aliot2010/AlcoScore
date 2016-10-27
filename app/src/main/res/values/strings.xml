@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">AlcoScore</string>
-    <string-array name="titles"
-        >
+    <string-array name="titles">
         <item>Главная</item>
         <item>Список алкоголя</item>
         <item>Добавить напиток</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
