@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AlcoScore</string>
+    <string-array name="titles"
+        >
+        <item>Главная</item>
+        <item>Список алкоголя</item>
+        <item>Добавить напиток</item>
+    </string-array>
+</resources>
