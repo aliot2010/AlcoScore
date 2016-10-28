@@ -7,5 +7,7 @@ package com.example.aliot10.alcoscore;
 public class Alcohol {
     private String name;
     private int volume;
+    private int volumeOfAlc;
+    private int imagePath;
 
 }
