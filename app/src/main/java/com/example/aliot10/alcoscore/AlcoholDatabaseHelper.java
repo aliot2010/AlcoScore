@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
-    private static final  String DB_NAME = "alcohols";
+    private static final  String DB_NAME = "DRINK";
     private static final int DB_VERSION = 1;
     public AlcoholDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -23,22 +23,28 @@ public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
                 "NAME TEXT, " +
                 "VOLUME INTEGER, " +
                 "VOLUME_OF_ALCOHOL INTEGER, " +
-                "IMAGE_RESOURCE_ID INTEGER);");
+                "IMAGE_RESOURCE_ID INTEGER, " +
+                "FAVORITE INTEGER);");
         doScript(sqLiteDatabase);
     }
 
     private void doScript(SQLiteDatabase db) {
-        db.insert()//TODO
+        insertDrink(db, "Пиво светлое", 568, 5, R.drawable.alc1, 0);
+        insertDrink(db, "Пиво темное", 568, 5, R.drawable.alc1, 0);
+        insertDrink(db, "Пиво темное", 300, 5, R.drawable.alc11, 0);
+        insertDrink(db, "Пиво светлое", 300, 5, R.drawable.alc5, 0);
     }
 
     private static void insertDrink(SQLiteDatabase db, String name,
                                     int volume, int volumeOfAlcohol,
-                                    int imageResourse){
+                                    int imageResourse, int favorite){
         ContentValues values = new ContentValues();
         values.put("NAME", name);
         values.put("VOLUME", volume);
         values.put("VOLUME_OF_ALCOHOL", volumeOfAlcohol);
         values.put("IMAGE_RESOURCE_ID", imageResourse);
+        values.put("FAVORITE", favorite);
+        db.insert("DRINK", null, values);
     }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {

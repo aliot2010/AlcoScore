@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import layout.ListOfAlc;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,10 +28,14 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     private android.app.Fragment mainFragment;
     ActionBarDrawerToggle drawerToggle;
+
+    AlcoholDatabaseHelper alcoholDatabaseHelper;
+    SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        createDatabase();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -42,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
         createListeners();
 
 
+
+    }
+
+    private void createDatabase() {
+        alcoholDatabaseHelper = new AlcoholDatabaseHelper(this);
+        db = alcoholDatabaseHelper.getReadableDatabase();
 
     }
 
@@ -120,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new mainFragment();
                         break;
                     case 1:
-                        fragment = new ListOfAlcohol();
+                        fragment = new ListOfAlc();
                         break;
                     case 2:
                         fragment = new AddAlcohole();
@@ -148,5 +160,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();//
+    }
 }
