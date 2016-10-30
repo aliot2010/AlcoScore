@@ -10,17 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
 import com.example.aliot10.alcoscore.AlcoholDatabaseHelper;
 import com.example.aliot10.alcoscore.R;
+import com.example.aliot10.alcoscore.adapters.AlcCursorAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ListOfAlc extends Fragment {
     ListView listOfAlc;
-    String[] list = new String[]{"111", "der", "wcc"};
+
     AlcoholDatabaseHelper dbHelper;
     SQLiteDatabase db;
     Cursor cursor;
@@ -42,23 +42,27 @@ public class ListOfAlc extends Fragment {
         super.onActivityCreated(savedInstanceState);
         createDB();
         listOfAlc =(ListView) getActivity().findViewById(R.id.list_of_alc);
+
         //ArrayAdapter adapter = new ArrayAdapter(getActivity().getBaseContext(),android.R.layout.simple_list_item_1, list);
-        cursorAdapter = new SimpleCursorAdapter(getActivity().getBaseContext(),
-                android.R.layout.simple_list_item_1,
-                cursor, new String[]{"NAME"},
-                new int[]{android.R.id.text1}, 0);
+        cursorAdapter = new AlcCursorAdapter(getActivity().getBaseContext(),
+                R.layout.item,
+                cursor, new String[]{"NAME", "VOLUME", "VOLUME_OF_ALCOHOL", "IMAGE_RESOURCE_ID", "FAVORITE"},
+                new int[]{0 , 0 , 0, 0 ,0});
 
 
         listOfAlc.setAdapter(cursorAdapter);
+
     }
 
     private void createDB() {
         dbHelper = new AlcoholDatabaseHelper(getActivity().getBaseContext());
         db = dbHelper.getReadableDatabase();
         cursor = db.query("DRINK",
-                new String[]{"_id", "NAME"},
+                new String[]{"_id", "NAME", "VOLUME",  "VOLUME_OF_ALCOHOL", "IMAGE_RESOURCE_ID", "FAVORITE"},
                 null, null, null, null, null);
 
     }
+
+
 
 }

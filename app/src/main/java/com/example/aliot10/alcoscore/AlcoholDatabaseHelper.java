@@ -21,7 +21,7 @@ public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
         sqLiteDatabase.execSQL("CREATE TABLE DRINK (" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "NAME TEXT, " +
-                "VOLUME INTEGER, " +
+                "VOLUME TEXT, " +
                 "VOLUME_OF_ALCOHOL INTEGER, " +
                 "IMAGE_RESOURCE_ID INTEGER, " +
                 "FAVORITE INTEGER);");
@@ -30,12 +30,12 @@ public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
 
     private void doScript(SQLiteDatabase db) {
         insertDrink(db, "Пиво светлое", 568, 5, R.drawable.alc1, 0);
-        insertDrink(db, "Пиво темное", 568, 5, R.drawable.alc1, 0);
-        insertDrink(db, "Пиво темное", 300, 5, R.drawable.alc11, 0);
+        insertDrink(db, "Пиво темное", 568 , 5, R.drawable.alc1, 0);
+        insertDrink(db, "Пиво темное", 300 , 5, R.drawable.alc11, 0);
         insertDrink(db, "Пиво светлое", 300, 5, R.drawable.alc5, 0);
     }
 
-    private static void insertDrink(SQLiteDatabase db, String name,
+    public static void insertDrink(SQLiteDatabase db, String name,
                                     int volume, int volumeOfAlcohol,
                                     int imageResourse, int favorite){
         ContentValues values = new ContentValues();
@@ -49,5 +49,10 @@ public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+    public static void onItemSetFlag(SQLiteDatabase db,int id, int flag) {
+         ContentValues cv = new ContentValues();
+        cv.put("FAVORITE", flag);
+        int i = db.update("DRINK", cv, "_id=?", new String[]{Integer.toString((id))});
     }
 }
