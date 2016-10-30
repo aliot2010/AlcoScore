@@ -33,6 +33,19 @@ public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
         insertDrink(db, "Пиво темное", 568 , 5, R.drawable.alc1, 0);
         insertDrink(db, "Пиво темное", 300 , 5, R.drawable.alc11, 0);
         insertDrink(db, "Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "1Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "2Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "3Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "4Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "5Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "6Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "7Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "8Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "9Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "0Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "11Пиво светлое", 300, 5, R.drawable.alc5, 0);
+
+
     }
 
     public static void insertDrink(SQLiteDatabase db, String name,

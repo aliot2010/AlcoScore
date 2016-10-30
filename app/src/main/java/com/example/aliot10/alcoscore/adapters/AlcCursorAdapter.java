@@ -3,6 +3,7 @@ package com.example.aliot10.alcoscore.adapters;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,13 +70,16 @@ public class AlcCursorAdapter extends SimpleCursorAdapter {
         likeToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                createDatabase();
+                UpdateDrinkTask updateDrinkTask = new UpdateDrinkTask();
                 if (likeToggleButton.isChecked()){
                     likeToggleButton.setBackgroundResource(R.drawable.hearts);
-                    insertLikeToggleButtonFlag(id, 1);
+                   // insertLikeToggleButtonFlag(id, 1);
+
+                    updateDrinkTask.execute(id, 1);
                 }else{
                     likeToggleButton.setBackgroundResource(R.drawable.favorite);
-                    insertLikeToggleButtonFlag(id, 2);
+                   // insertLikeToggleButtonFlag(id, 0);
+                    updateDrinkTask.execute(id, 0);
                 }
             }
         });
@@ -89,7 +93,17 @@ public class AlcCursorAdapter extends SimpleCursorAdapter {
     private void insertLikeToggleButtonFlag(int id, int flag){
         AlcoholDatabaseHelper.onItemSetFlag(db, id, flag);
     }
+    class UpdateDrinkTask extends AsyncTask<Integer, Void, Void>{
 
+
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            createDatabase();
+            insertLikeToggleButtonFlag(integers[0], integers[1]);
+            return null;
+        }
+    }
 
 
 }

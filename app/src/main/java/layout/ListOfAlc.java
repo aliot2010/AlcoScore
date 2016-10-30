@@ -4,11 +4,11 @@ package layout;
 import android.app.Fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 
 import com.example.aliot10.alcoscore.AlcoholDatabaseHelper;
@@ -20,11 +20,8 @@ import com.example.aliot10.alcoscore.adapters.AlcCursorAdapter;
  */
 public class ListOfAlc extends Fragment {
     ListView listOfAlc;
+    AlcCursorAdapter adapter;
 
-    AlcoholDatabaseHelper dbHelper;
-    SQLiteDatabase db;
-    Cursor cursor;
-    CursorAdapter cursorAdapter;
     public ListOfAlc() {
         // Required empty public constructor
     }
@@ -40,29 +37,41 @@ public class ListOfAlc extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        createDB();
-        listOfAlc =(ListView) getActivity().findViewById(R.id.list_of_alc);
 
-        //ArrayAdapter adapter = new ArrayAdapter(getActivity().getBaseContext(),android.R.layout.simple_list_item_1, list);
-        cursorAdapter = new AlcCursorAdapter(getActivity().getBaseContext(),
-                R.layout.item,
-                cursor, new String[]{"NAME", "VOLUME", "VOLUME_OF_ALCOHOL", "IMAGE_RESOURCE_ID", "FAVORITE"},
-                new int[]{0 , 0 , 0, 0 ,0});
+        listOfAlc = (ListView) getActivity().findViewById(R.id.list_of_alc);
 
-
-        listOfAlc.setAdapter(cursorAdapter);
+    new SetCursorAsyncTasc().execute();
 
     }
 
-    private void createDB() {
-        dbHelper = new AlcoholDatabaseHelper(getActivity().getBaseContext());
-        db = dbHelper.getReadableDatabase();
-        cursor = db.query("DRINK",
-                new String[]{"_id", "NAME", "VOLUME",  "VOLUME_OF_ALCOHOL", "IMAGE_RESOURCE_ID", "FAVORITE"},
-                null, null, null, null, null);
 
+    class SetCursorAsyncTasc extends AsyncTask<Void, Void, Cursor> {
+        SQLiteDatabase db;
+
+        @Override
+        protected Cursor doInBackground(Void... voids) {
+            return createDB();
+        }
+        private Cursor createDB() {
+            AlcoholDatabaseHelper dbHelper = new AlcoholDatabaseHelper(getActivity().getBaseContext());
+             db = dbHelper.getReadableDatabase();
+            Cursor cursor = db.query("DRINK",
+                    new String[]{"_id", "NAME", "VOLUME",  "VOLUME_OF_ALCOHOL", "IMAGE_RESOURCE_ID", "FAVORITE"},
+                    null, null, null, null, null);
+            return cursor;
+        }
+
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+            adapter = new AlcCursorAdapter(getActivity().getBaseContext(),
+                    R.layout.item,
+                    cursor, new String[]{"NAME", "VOLUME", "VOLUME_OF_ALCOHOL", "IMAGE_RESOURCE_ID", "FAVORITE"},
+                    new int[]{0 , 0 , 0, 0 ,0});
+            listOfAlc.setAdapter(adapter);
+            db.close();
+
+        }
     }
-
 
 
 }
