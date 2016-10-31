@@ -32,21 +32,12 @@
             android:layout_alignStart="@+id/inputName" />
     </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:text="Выберите объем порции:"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:id="@+id/textView"
-        android:layout_below="@+id/inputName"
-        android:layout_margin="8dp"
-        android:layout_alignStart="@+id/inputName" />
-
     <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:id="@+id/valSeek"
         app:dsb_min="1"
         app:dsb_max="20"
         app:dsb_value="0"
@@ -66,11 +57,89 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:id="@+id/textView2"
+        android:id="@+id/valTextView"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_alignBaseline="@+id/textView"
         android:layout_alignBottom="@+id/textView"
         android:layout_toEndOf="@+id/textView"
         android:layout_marginStart="11dp" />
+
+    <TextView
+
+        android:text="Выберите объем порции:"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/textView"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:layout_below="@+id/inputName"
+        android:layout_alignStart="@+id/valSeek" />
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="14dp"
+        android:text="Выберите процент алкоголя:"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/procentTextView"
+
+
+        android:layout_below="@+id/valSeek"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:text="2 %"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/procentTextView2"
+
+
+        android:layout_marginStart="18dp"
+        android:layout_alignBaseline="@+id/procentTextView"
+        android:layout_alignBottom="@+id/procentTextView"
+        android:layout_toEndOf="@+id/procentTextView" />
+
+    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/procentSeek"
+        app:dsb_min="1"
+        app:dsb_max="49"
+        app:dsb_value="1"
+        app:dsb_thumbSize = "25dp"
+        app:dsb_indicatorColor="@color/colorPrimary"
+        app:dsb_progressColor="@color/colorPrimary"
+        app:dsb_trackColor="@color/wallet_secondary_text_holo_dark"
+        app:dsb_indicatorPopupEnabled="false"
+
+
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/procentTextView"
+        android:layout_alignParentStart="true" />
+
+    <GridView
+        android:layout_marginTop="14dp"
+        android:numColumns="5"
+        android:listSelector="@color/colorPrimaryDark"
+        android:id="@+id/gridOfImages"
+        android:verticalSpacing="22dp"
+        android:horizontalSpacing="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/procentSeek"
+        android:layout_toStartOf="@+id/valTextView"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
