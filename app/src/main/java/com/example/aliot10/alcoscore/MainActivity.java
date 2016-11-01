@@ -136,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         fragment = new AddAlcohole();
+                        break;
+                    case 3:
+                        fragment = new SettingFragment();
+                        break;
 
                 }
 

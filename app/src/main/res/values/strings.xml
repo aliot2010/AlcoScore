@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">AlcoScore</string>
+    <string name="app_name">БухУчет</string>
     <string-array name="titles">
         <item>Главная</item>
         <item>Список алкоголя</item>
         <item>Добавить напиток</item>
+        <item>Настройки</item>
     </string-array>
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>

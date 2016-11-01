@@ -129,17 +129,34 @@
         android:layout_below="@+id/procentTextView"
         android:layout_alignParentStart="true" />
 
-    <GridView
+    <TextView
+        android:text="Выберите изображение:"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+
         android:layout_marginTop="14dp"
+        android:layout_below="@+id/procentSeek"
+        android:layout_toStartOf="@+id/procentTextView2" />
+
+    <GridView
         android:numColumns="5"
+        android:scrollbars="horizontal"
         android:listSelector="@color/colorPrimaryDark"
         android:id="@+id/gridOfImages"
         android:verticalSpacing="22dp"
         android:horizontalSpacing="22dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/procentSeek"
-        android:layout_toStartOf="@+id/valTextView"
-        android:layout_alignParentEnd="true" />
+        android:layout_height="208dp"
+        android:verticalScrollbarPosition="right"
+
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+
+        />
+
 
 </RelativeLayout>

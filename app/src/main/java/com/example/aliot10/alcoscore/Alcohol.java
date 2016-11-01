@@ -5,6 +5,7 @@ package com.example.aliot10.alcoscore;
  */
 
 public class Alcohol {
+    int id;
     private String name;
     private int volume;
     private int volumeOfAlc;
@@ -17,6 +18,21 @@ public class Alcohol {
         this.name = name;
         this.volume = volume;
         this.volumeOfAlc = volumeOfAlc;
+    }
+    public Alcohol( int id, String name, int volume, int volumeOfAlc,  int imagePath, int favorite) {
+        this.favorite = favorite;
+        this.imagePath = imagePath;
+        this.name = name;
+        this.volume = volume;
+        this.volumeOfAlc = volumeOfAlc;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getFavorite() {

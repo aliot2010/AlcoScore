@@ -6,7 +6,7 @@
     >
 
     <android.support.v7.widget.CardView
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="15dp"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
@@ -20,4 +20,5 @@
             app:srcCompat="@drawable/alc1"
             android:id="@+id/imageViewInCardView" />
     </android.support.v7.widget.CardView>
+
 </RelativeLayout>

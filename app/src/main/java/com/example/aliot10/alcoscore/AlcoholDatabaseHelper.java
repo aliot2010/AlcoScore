@@ -47,6 +47,10 @@ public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
 
 
     }
+    public static SQLiteDatabase openWritableDb(Context context){
+        AlcoholDatabaseHelper dbHelper = new AlcoholDatabaseHelper(context);
+        return dbHelper.getWritableDatabase();
+    }
 
     public static void insertDrink(SQLiteDatabase db, String name,
                                     int volume, int volumeOfAlcohol,
