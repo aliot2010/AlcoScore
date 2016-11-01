@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ public class SettingFragment extends Fragment {
 
     TextView weightTextView;
     DiscreteSeekBar weihtSeek;
-    int weight = 70, effectAlc = 100;
+    int weight = 70, effectAlc = 2;
     RadioGroup chooseEffectRadioGroupe;
     FloatingActionButton floatButton;
 
@@ -49,6 +50,8 @@ public class SettingFragment extends Fragment {
         setWeightSeekListener();
         setChooseRadioGroupeListener();
         setButtonLisener();
+        setPreferences();
+
 
     }
 
@@ -56,33 +59,52 @@ public class SettingFragment extends Fragment {
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Preferences pref = new Preferences(getActivity().getBaseContext());
+                pref.setPreferences(weight, effectAlc);
                 Toast toast = Toast.makeText(getActivity().getBaseContext(),
-                        "Введите корректное название", Toast.LENGTH_SHORT);
+                        "Настройки сохранены", Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
     }
 
     private void setChooseRadioGroupeListener() {
+
         chooseEffectRadioGroupe.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i){
                     case R.id.radioButton1:
-                        effectAlc =150;
+                        effectAlc = 1;
                         break;
                     case R.id.radioButton2:
-                        effectAlc = 100;
+                        effectAlc = 2;
                         break;
                     case R.id.radioButton3:
-                        effectAlc = 50;
+                        effectAlc = 3;
                         break;
                 }
             }
         });
     }
+    private void setPreferences(){
+        Preferences pref = new Preferences(getActivity().getBaseContext());
+
+        weight = pref.getPreferences(Preferences.APP_REFERENCES_WEIGHT);
+        weightTextView.setText(String.
+                valueOf(weight + " кг"));
+
+        effectAlc = pref.getPreferences(Preferences.APP_REFERENCES_Effect_OF_ALCOHOL);
+        ((RadioButton) getActivity().
+                findViewById( R.id.radioButton1
+                        - 1 + effectAlc )).
+                setChecked(true);
+        weihtSeek.setProgress(weight);
+    }
+
 
     private void setWeightSeekListener() {
+
         weihtSeek.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
             public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
