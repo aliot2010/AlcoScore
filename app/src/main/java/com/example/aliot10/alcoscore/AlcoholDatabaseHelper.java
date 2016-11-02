@@ -5,6 +5,7 @@ package com.example.aliot10.alcoscore;
  */
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -21,11 +22,22 @@ public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
         sqLiteDatabase.execSQL("CREATE TABLE DRINK (" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "NAME TEXT, " +
-                "VOLUME TEXT, " +
+                "VOLUME INTEGER, " +
                 "VOLUME_OF_ALCOHOL INTEGER, " +
                 "IMAGE_RESOURCE_ID INTEGER, " +
                 "FAVORITE INTEGER);");
         doScript(sqLiteDatabase);
+    }
+
+    public static Alcohol getAlcohol(SQLiteDatabase db,int id){
+        Cursor cursor = db.query("DRINK",
+                new String[]
+                        {"NAME",  "VOLUME", "VOLUME_OF_ALCOHOL",  "IMAGE_RESOURCE_ID", "FAVORITE" },
+                "_id = ?", new String[]{Integer.toString(id)}, null, null, null);
+        cursor.moveToFirst();
+        return new Alcohol(cursor.getString(0), cursor.getInt(1), cursor.getInt(2),
+                cursor.getInt(3), cursor.getInt(4));
+
     }
 
     private void doScript(SQLiteDatabase db) {
@@ -48,6 +60,10 @@ public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
 
     }
     public static SQLiteDatabase openWritableDb(Context context){
+        AlcoholDatabaseHelper dbHelper = new AlcoholDatabaseHelper(context);
+        return dbHelper.getWritableDatabase();
+    }
+    public static SQLiteDatabase openReadablDb(Context context){
         AlcoholDatabaseHelper dbHelper = new AlcoholDatabaseHelper(context);
         return dbHelper.getWritableDatabase();
     }

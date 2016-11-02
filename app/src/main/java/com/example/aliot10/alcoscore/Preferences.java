@@ -12,6 +12,7 @@ public class Preferences {
     public static final String APP_REFERENCES_Effect_OF_ALCOHOL = "EffectOfAlcohol";
     public static final String APP_REFERENCES_WEIGHT = "Weight";
     private static final String APP_HAS_VISITED = "visited";
+    private static final String APP_REFERENCES_ALCOHOL_IN_BODY = "alcoholInBody";
     public static final int WEIGHT_FLAG = 0;
     public static final int EFFECT_OF_ALCOHOL_FLAG = 1;
     Context context;
@@ -34,6 +35,21 @@ public class Preferences {
         editor.putInt(APP_REFERENCES_Effect_OF_ALCOHOL, effectOfAlcPref);
         editor.apply();
     }
+
+    void setWeightOfAlcoholInBody(float wight){
+        this.preferences = context.
+                getSharedPreferences(APP_REFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = this.preferences.edit();
+        editor.putFloat(Preferences.APP_REFERENCES_ALCOHOL_IN_BODY, wight);
+        editor.apply();
+    }
+    float getWeightOfAlcoholInBody(){
+        SharedPreferences preferences =
+                context.getSharedPreferences(APP_REFERENCES, Context.MODE_PRIVATE);
+        return preferences.getFloat
+                (Preferences.APP_REFERENCES_ALCOHOL_IN_BODY, Context.MODE_PRIVATE);
+    }
+
 
     public int getPreferences(String appReferenceFlag) {
         SharedPreferences preferences =

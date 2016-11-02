@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
         Preferences pref = new Preferences(getBaseContext());
         if (!pref.hasVisited()){
             pref.setPreferences(70, 2);
+            pref.setWeightOfAlcoholInBody(0);
             pref.setVisited(true);
-           
+
 
         }
     }
