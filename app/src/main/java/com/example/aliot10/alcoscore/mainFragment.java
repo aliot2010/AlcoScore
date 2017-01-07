@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class mainFragment extends Fragment {
     ListView listOfAlc;
     WaveLoadingView waveLoadingView;
     TextView adviceText;
+    Button serviceClearButton;
     String advice[] = {"Вы трезвы как стеклышко, пора начинать пить!",
             "Вы двигаетесь в правильном направлении", "Сейчас вы способны на все!",
             "Достаточно, больше пить явно не стоит", "Опасно! Срочно перестаньте пить!"};
@@ -48,6 +50,8 @@ public class mainFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        serviceClearButton = (Button) getActivity().findViewById(R.id.buttonClearProgress);
+        setButtonListener();
         adviceText = (TextView) getActivity().findViewById(R.id.textViewAdvice);
         listOfAlc = (ListView) getActivity().findViewById(R.id.list_of_alc);
         waveLoadingView = ((WaveLoadingView) getActivity().findViewById(R.id.waveLoadingView));
@@ -57,6 +61,19 @@ public class mainFragment extends Fragment {
 
         new SetCursorAsyncTasc().execute();
         setOnItemClicked();
+    }
+
+    private void setButtonListener() {
+        serviceClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Preferences pref = new Preferences(getActivity());
+                pref.setWeightOfAlcoholInBody(0);
+                promile=0;
+               // waveLoadingView.setProgressValue(0);
+                setWaveWiew();
+            }
+        });
     }
 
     private void setWaveWiew() {
@@ -142,4 +159,9 @@ public class mainFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setWaveWiew();
+    }
 }

@@ -42,20 +42,25 @@ public class AlcoholDatabaseHelper extends  SQLiteOpenHelper{
 
     private void doScript(SQLiteDatabase db) {
         insertDrink(db, "Пиво светлое", 568, 5, R.drawable.alc1, 0);
-        insertDrink(db, "Пиво темное", 568 , 5, R.drawable.alc1, 0);
+        insertDrink(db, "Пиво темное", 568 , 5, R.drawable.alc4, 0);
         insertDrink(db, "Пиво темное", 300 , 5, R.drawable.alc11, 0);
         insertDrink(db, "Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "1Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "2Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "3Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "4Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "5Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "6Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "7Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "8Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "9Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "0Пиво светлое", 300, 5, R.drawable.alc5, 0);
-        insertDrink(db, "11Пиво светлое", 300, 5, R.drawable.alc5, 0);
+        insertDrink(db, "Вино белое", 200, 12, R.drawable.alc41, 0);
+        insertDrink(db, "Вино красное", 200, 12, R.drawable.alc42, 0);
+        insertDrink(db, "Виски", 100, 40, R.drawable.alc15, 0);
+        insertDrink(db, "Водка", 50, 40, R.drawable.alc33, 0);
+        insertDrink(db, "Джин", 50, 40, R.drawable.alc29, 0);
+        insertDrink(db, "Квас", 200, 2, R.drawable.alc9, 0);
+        insertDrink(db, "Коньяк", 100, 40, R.drawable.alc12, 0);
+        insertDrink(db, "Ликер слабый", 50, 20, R.drawable.alc27, 0);
+        insertDrink(db, "Ликер крепкий", 50, 40, R.drawable.alc40, 0);
+        insertDrink(db, "Бурбон", 100, 40, R.drawable.alc20, 0);
+        insertDrink(db, "Медовуха", 100, 10, R.drawable.alc43, 0);
+        insertDrink(db, "Мартини", 100, 18, R.drawable.alc13, 0);
+        insertDrink(db, "Ром", 50, 40, R.drawable.alc33, 0);
+        insertDrink(db, "Самогон", 50, 40, R.drawable.alc40, 0);
+        insertDrink(db, "Текила", 50, 38, R.drawable.alc34, 0);
+        insertDrink(db, "Шампанское", 100, 12, R.drawable.alc5, 0);
 
 
     }

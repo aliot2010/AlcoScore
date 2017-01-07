@@ -4,6 +4,7 @@ package com.example.aliot10.alcoscore;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -34,9 +35,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
         setPreferences();
         createDatabase();
+        stopService(new Intent(getBaseContext(), MyIntentService.class));
+        startService(new Intent(getBaseContext(), MyIntentService.class));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -65,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             pref.setPreferences(70, 2);
             pref.setWeightOfAlcoholInBody(0);
             pref.setVisited(true);
+           // new ServicAsyncTasc().execute();
 
 
         }
@@ -184,6 +190,8 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
     }
+
+
 
 
 }
